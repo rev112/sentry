@@ -1,0 +1,23 @@
+trigger:
+  - "*"
+
+pool:
+  name: 'Default'
+  demands:
+    - agent.os -equals Linux
+
+variables:
+  python.version: '2.7'
+
+steps:
+- task: UsePythonVersion@0
+  inputs:
+    versionSpec: '$(python.version)'
+  displayName: 'Use Python $(python.version)'
+
+- bash: |
+    set -eux
+
+    ls -alh
+    pwd
+    python -V
