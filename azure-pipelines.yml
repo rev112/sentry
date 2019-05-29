@@ -10,10 +10,10 @@ variables:
   python.version: '2.7'
 
 steps:
-- task: UsePythonVersion@0
-  inputs:
-    versionSpec: '$(python.version)'
-  displayName: 'Use Python $(python.version)'
+# - task: UsePythonVersion@0
+#   inputs:
+#     versionSpec: '$(python.version)'
+#   displayName: 'Use Python $(python.version)'
 
 - bash: |
     set -eux
