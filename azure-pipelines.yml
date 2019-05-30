@@ -1,23 +1,46 @@
 trigger:
   - "*"
 
-pool:
-  name: 'Default'
-  demands:
-    - agent.os -equals Linux
 
 variables:
   python.version: '2.7'
 
-steps:
-# - task: UsePythonVersion@0
-#   inputs:
-#     versionSpec: '$(python.version)'
-#   displayName: 'Use Python $(python.version)'
+jobs:
+  - job:
 
-- bash: |
-    set -eux
+    pool:
+      name: 'Default'
+      demands:
+        - agent.os -equals Linux
 
-    ls -alh
-    pwd
-    python -V
+    steps:
+    # - task: UsePythonVersion@0
+    #   inputs:
+    #     versionSpec: '$(python.version)'
+    #   displayName: 'Use Python $(python.version)'
+
+    - bash: |
+        set -eux
+
+        echo 'job 1'
+        ls -alh
+        pwd
+        python -V
+        sleep 20
+
+  - job:
+
+    pool:
+      name: 'Default'
+      demands:
+        - agent.os -equals Linux
+
+    steps:
+    - bash: |
+        set -eux
+
+        echo 'job 2'
+        ls -alh
+        pwd
+        python -V
+        sleep 20
