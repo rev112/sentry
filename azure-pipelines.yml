@@ -1,46 +1,31 @@
 trigger:
   - "*"
 
-
 variables:
   python.version: '2.7'
 
-jobs:
-  - job:
+pool:
+  name: 'Default'
+  demands:
+    - agent.os -equals Linux
 
-    pool:
-      name: 'Default'
-      demands:
-        - agent.os -equals Linux
 
-    steps:
-    # - task: UsePythonVersion@0
-    #   inputs:
-    #     versionSpec: '$(python.version)'
-    #   displayName: 'Use Python $(python.version)'
+strategy:
+  matrix:
+    ubuntu14:
+      containerImage: ubuntu:14.04
+    ubuntu16:
+      containerImage: ubuntu:16.04
+    ubuntu18:
+      containerImage: ubuntu:18.04
 
-    - bash: |
-        set -eux
+container: $[ variables['containerImage'] ]
 
-        echo 'job 1'
-        ls -alh
-        pwd
-        python -V
-        sleep 20
+steps:
+  - bash: |
+      set -eux
 
-  - job:
-
-    pool:
-      name: 'Default'
-      demands:
-        - agent.os -equals Linux
-
-    steps:
-    - bash: |
-        set -eux
-
-        echo 'job 2'
-        ls -alh
-        pwd
-        python -V
-        sleep 20
+      pwd
+      whoami
+      env
+      sleep 20
