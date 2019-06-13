@@ -7,7 +7,7 @@ pool:
     - agent.os -equals Linux
 
 container:
-  image: "sentry-test:latest"
+  image: "localhost:5000/test/sentry-test:latest"
 
 variables:
   NODE_ENV: development
