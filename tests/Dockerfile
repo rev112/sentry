@@ -1,7 +1,7 @@
 FROM python:2.7.16-slim-stretch
 
 # We need this stuff
-RUN apt-get update && apt-get install -y make git build-essential
+RUN apt-get update && apt-get install -y make git build-essential wget curl
 
 RUN groupadd -r sentry && useradd -r -g sentry sentry
 

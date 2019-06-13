@@ -6,7 +6,7 @@ pool:
   demands:
     - agent.os -equals Linux
 
-container: "ubuntu:14.04"
+container: "sentry-test"
 
 variables:
   NODE_ENV: development
@@ -25,6 +25,8 @@ steps:
   - bash: |
       set -eux
       env
+      pwd
+      whoami
 
       # Before install
       find "$NODE_DIR" -type d -empty -delete
