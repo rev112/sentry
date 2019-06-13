@@ -6,7 +6,7 @@ pool:
   demands:
     - agent.os -equals Linux
 
-container: "sentry-test"
+container: "sentry-test:latest"
 
 variables:
   NODE_ENV: development
