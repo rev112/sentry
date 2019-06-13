@@ -22,6 +22,11 @@ variables:
   YARN_VERSION: "1.13.0"
   NODE_OPTIONS: --max-old-space-size=4096
 
+services:
+  memcached: "memcached:1.4.36-alpine"
+  postgresql: "postgres:9.6.13-alpine"
+  redis: "redis:5.0.5-alpine"
+
 steps:
   - bash: |
       set -eux
@@ -29,7 +34,8 @@ steps:
       pwd
       whoami
 
-      npm install -g yarn
+      # FIXME permissions workaround
+      sudo chown -R $(id -u):$(id -g) /usr/local
 
       # docker run -d --network host --name clickhouse-server --ulimit nofile=262144:262144 yandex/clickhouse-server:18.14.9
       # docker run -d --network host --name snuba --env SNUBA_SETTINGS=test --env CLICKHOUSE_SERVER=localhost:9000 getsentry/snuba
